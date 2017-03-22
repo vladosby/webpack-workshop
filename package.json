@@ -1,0 +1,22 @@
+{
+  "name": "webpack-workshop",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vladosby/webpack-workshop.git"
+  },
+  "keywords": [
+    "webpack2",
+    "worckshop"
+  ],
+  "author": "vladosby",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/vladosby/webpack-workshop/issues"
+  },
+  "homepage": "https://github.com/vladosby/webpack-workshop#readme"
+}
