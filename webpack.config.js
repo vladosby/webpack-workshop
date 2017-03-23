@@ -4,11 +4,12 @@ var path = require('path');
 module.exports = {
     context: path.resolve(__dirname, 'app'),
     entry: {
-        app: './app'
+        app: './app',
+        home: './home'
     },
     output: {
-        filename: 'bundle.js',
+        filename: '[name].js',
         path: path.resolve(__dirname, 'dist'),
-        library: 'lib'
+        library: '[name]'
     }
 };
