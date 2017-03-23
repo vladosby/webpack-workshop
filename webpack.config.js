@@ -9,6 +9,7 @@ module.exports = {
     output: {
         filename: 'bundle.js',
         path: path.resolve(__dirname, 'dist'),
-        sourceMapFilename: '[file].map'
+        sourceMapFilename: '[file].map',
+        library: 'lib'
     }
 };
