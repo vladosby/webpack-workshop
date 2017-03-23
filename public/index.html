@@ -7,8 +7,14 @@
     <script src="../dist/home.js"></script>
 </head>
 <body>
+<p id="ignored_file"></p>
+
     <script>
         app.helloWorld('Hello I am Library');
     </script>
+    <script>
+        document.getElementById("ignored_file").innerHTML = app.printIgnoredText('I will not change.');
+    </script>
+
 </body>
 </html>
