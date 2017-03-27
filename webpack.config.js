@@ -17,5 +17,6 @@ module.exports = {
         aggregateTimeout: 300,
         poll: 1000,
         ignored: /ignored_directory/
-    }
+    },
+    devtool: 'cheap-module-eval-source-map'
 };
