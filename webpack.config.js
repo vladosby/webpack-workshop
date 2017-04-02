@@ -24,11 +24,20 @@ module.exports = {
             {
                 test: /.js$/,
                 exclude: /(node_modules)/,
-                loader: 'babel-loader',
+                loader: 'babel',
                 options: {
                     presets: ['env']
                 }
             }
         ]
+    },
+    resolve: {
+        modules: [path.resolve(__dirname, 'app'), path.resolve(__dirname, 'node_modules')],
+        extensions: ['.js']
+    },
+    resolveLoader: {
+        modules: [path.resolve(__dirname, 'node_modules')],
+        extensions: ['.js'],
+        moduleExtensions: ['-loader']
     }
 };

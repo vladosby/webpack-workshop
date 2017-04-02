@@ -1,5 +1,5 @@
 'use strict';
 
-export default function printIgnoredText(message) {
+export function printIgnoredText(message) {
     return message;
 }
