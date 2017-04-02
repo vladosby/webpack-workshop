@@ -18,5 +18,17 @@ module.exports = {
         poll: 1000,
         ignored: /ignored_directory/
     },
-    devtool: 'cheap-module-eval-source-map'
+    devtool: 'cheap-module-eval-source-map',
+    module: {
+        rules: [
+            {
+                test: /.js$/,
+                exclude: /(node_modules)/,
+                loader: 'babel-loader',
+                options: {
+                    presets: ['env']
+                }
+            }
+        ]
+    }
 };
