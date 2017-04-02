@@ -1,7 +1,6 @@
 'use strict';
-
-var helloWorld = require('./welcome');
+import helloWorld from './welcome';
 
 helloWorld('Home module working!');
 
-exports.helloWorld = helloWorld;
+export { helloWorld };

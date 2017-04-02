@@ -1,7 +1,5 @@
 'use strict';
 
-function helloWorld(message) {
+export default function helloWorld(message) {
     alert(message);
 }
-
-module.exports = helloWorld;

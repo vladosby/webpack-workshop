@@ -1,9 +1,6 @@
-'use strict';
-
-var helloWorld = require('./welcome');
-var printIgnoredText = require('./ignored_directory/ingored');
+import printIgnoredText from './ignored_directory/ingored';
+import helloWorld from './welcome';
 
 helloWorld('Hello World!');
 
-exports.helloWorld = helloWorld;
-exports.printIgnoredText = printIgnoredText;
+export { helloWorld, printIgnoredText };
