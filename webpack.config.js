@@ -1,11 +1,12 @@
 'use strict';
 var path = require('path');
 const webpack = require('webpack');
+const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = (env)=> {
-    const MODE = env || 'dev';
-
-    return {
+    const MODE = env !== undefined ? env.mode : 'dev';
+    
+    let config = {
         context: path.resolve(__dirname, 'app'),
         entry: {
             app: './app',
@@ -53,7 +54,21 @@ module.exports = (env)=> {
         plugins: [
             new webpack.DefinePlugin({
                 mode: JSON.stringify(MODE)
-            }),
+            })
         ]
     };
+
+    if (MODE === 'prod') {
+        config.plugins.push(
+            new UglifyJSPlugin({
+                compress: true,
+                output: {
+                    comments: false
+                },
+                beautify: false
+            })
+        );
+    }
+    
+    return config;
 };
