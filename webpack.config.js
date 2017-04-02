@@ -18,7 +18,7 @@ module.exports = {
         poll: 1000,
         ignored: /ignored_directory/
     },
-    devtool: 'cheap-module-eval-source-map',
+    devtool: 'source-map',
     module: {
         rules: [
             {
@@ -33,7 +33,10 @@ module.exports = {
     },
     resolve: {
         modules: [path.resolve(__dirname, 'app'), path.resolve(__dirname, 'node_modules')],
-        extensions: ['.js']
+        extensions: ['.js'],
+        alias: {
+            delayedAlert: path.resolve(__dirname, 'vendor/old_script/lib/delayed-alert')
+        }
     },
     resolveLoader: {
         modules: [path.resolve(__dirname, 'node_modules')],
