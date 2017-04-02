@@ -4,7 +4,10 @@ import $ from 'jquery';
 
 let delayedAlert = require('imports?settings=>{delay: 2000}!exports?delayedAlert!delayedAlert');
 
-helloWorld('Home module working!');
+if (mode === 'prod') {
+    helloWorld('Home module working!');
+}
+
 delayedAlert();
 
 setTimeout(() => {

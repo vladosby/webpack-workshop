@@ -1,7 +1,10 @@
 'use strict';
 var path = require('path');
+const webpack = require('webpack');
 
 module.exports = (env)=> {
+    const MODE = env || 'dev';
+
     return {
         context: path.resolve(__dirname, 'app'),
         entry: {
@@ -13,13 +16,13 @@ module.exports = (env)=> {
             path: path.resolve(__dirname, 'dist'),
             library: '[name]'
         },
-        watch: env.mode === 'dev',
+        watch: MODE === 'dev',
         watchOptions: {
             aggregateTimeout: 300,
             poll: 1000,
             ignored: /ignored_directory/
         },
-        devtool: env.mode === 'dev' ? 'source-map' : '',
+        devtool: MODE === 'dev' ? 'source-map' : '',
         module: {
             rules: [
                 {
@@ -46,6 +49,11 @@ module.exports = (env)=> {
         },
         externals: {
             jquery: 'jQuery'
-        }
+        },
+        plugins: [
+            new webpack.DefinePlugin({
+                mode: JSON.stringify(MODE)
+            }),
+        ]
     };
 };
