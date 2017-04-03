@@ -52,9 +52,12 @@ module.exports = (env)=> {
             }),
             new webpack.optimize.CommonsChunkPlugin({
                 name: 'vendor',
-                chunks: ['app', 'home', 'common'],
+                chunks: ['app', 'home', 'common', 'manifest'],
                 minChunks: module => /node_modules/.test(module.resource)
             })
-        ]
+        ],
+        stats: {
+            warnings: false
+        }
     };
 };
