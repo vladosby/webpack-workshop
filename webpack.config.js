@@ -56,8 +56,14 @@ module.exports = (env)=> {
                 mode: JSON.stringify(MODE)
             }),
             new webpack.optimize.CommonsChunkPlugin({
-                name: 'common'
-            })
+                name: 'common',
+                minSize: 2
+            }),
+            new webpack.optimize.CommonsChunkPlugin({
+                name: 'vendor',
+                chunks: ['app', 'home', 'common'],
+                minChunks: module => /node_modules/.test(module.resource)
+            }),
         ]
     };
 
