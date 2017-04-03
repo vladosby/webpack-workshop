@@ -54,6 +54,9 @@ module.exports = (env)=> {
         plugins: [
             new webpack.DefinePlugin({
                 mode: JSON.stringify(MODE)
+            }),
+            new webpack.optimize.CommonsChunkPlugin({
+                name: "common"
             })
         ]
     };
