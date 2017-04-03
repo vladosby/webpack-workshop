@@ -9,9 +9,13 @@ console.log('if string: ' + _.isString('123'));
 
 setTimeout(() => {
     $('.dynamic_button').click(() => {
-        import('./dynamic-module').then((dynamicMessage) => {
+        require.ensure(['./dynamic-module'], (require) => {
+            let dynamicMessage = require('./dynamic-module');
             dynamicMessage();
         });
+        // import('./dynamic-module').then((dynamicMessage) => {
+        //     dynamicMessage();
+        // });
 
     });
 }, 2000);
