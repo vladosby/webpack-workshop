@@ -1,83 +1,15 @@
-'use strict';
-var path = require('path');
-const webpack = require('webpack');
-const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
+const devConfig = require('./config/webpack.dev.config');
+const prodConfig = require('./config/webpack.prod.config');
+
+const commonConfig = require('./config/webpack.common.config');
 
 module.exports = (env)=> {
     const MODE = env !== undefined ? env.mode : 'dev';
-    
-    let config = {
-        context: path.resolve(__dirname, 'app'),
-        entry: {
-            app: './app',
-            home: './home'
-        },
-        output: {
-            filename: '[name].js',
-            path: path.resolve(__dirname, 'dist'),
-            library: '[name]'
-        },
-        watch: MODE === 'dev',
-        watchOptions: {
-            aggregateTimeout: 300,
-            poll: 1000,
-            ignored: /ignored_directory/
-        },
-        devtool: MODE === 'dev' ? 'source-map' : '',
-        module: {
-            rules: [
-                {
-                    test: /.js$/,
-                    exclude: /(node_modules)/,
-                    loader: 'babel',
-                    options: {
-                        presets: ['env']
-                    }
-                }
-            ]
-        },
-        resolve: {
-            modules: [path.resolve(__dirname, 'app'), path.resolve(__dirname, 'node_modules')],
-            extensions: ['.js'],
-            alias: {
-                delayedAlert: path.resolve(__dirname, 'vendor/old_script/lib/delayed-alert')
-            }
-        },
-        resolveLoader: {
-            modules: [path.resolve(__dirname, 'node_modules')],
-            extensions: ['.js'],
-            moduleExtensions: ['-loader']
-        },
-        externals: {
-            jquery: 'jQuery'
-        },
-        plugins: [
-            new webpack.DefinePlugin({
-                mode: JSON.stringify(MODE)
-            }),
-            new webpack.optimize.CommonsChunkPlugin({
-                name: 'common',
-                minSize: 2
-            }),
-            new webpack.optimize.CommonsChunkPlugin({
-                name: 'vendor',
-                chunks: ['app', 'home', 'common'],
-                minChunks: module => /node_modules/.test(module.resource)
-            }),
-        ]
-    };
 
-    if (MODE === 'prod') {
-        config.plugins.push(
-            new UglifyJSPlugin({
-                compress: true,
-                output: {
-                    comments: false
-                },
-                beautify: false
-            })
-        );
+    if (MODE === 'dev') {
+        return devConfig('dev');
+        // return commonConfig('dev');
+    } else {
+        return prodConfig('prod');
     }
-    
-    return config;
 };
