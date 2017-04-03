@@ -2,6 +2,7 @@
 var path = require('path');
 const webpack = require('webpack');
 
+
 module.exports = (env)=> {
 
     return {
@@ -13,6 +14,7 @@ module.exports = (env)=> {
         output: {
             filename: '[name].js',
             path: path.resolve(__dirname, '../dist'),
+            publicPath: '../dist/',
             library: '[name]'
         },
         module: {
@@ -22,7 +24,8 @@ module.exports = (env)=> {
                     exclude: /(node_modules)/,
                     loader: 'babel',
                     options: {
-                        presets: ['env']
+                        presets: ['env'],
+                        "plugins": ["dynamic-import-webpack"]
                     }
                 }
             ]
