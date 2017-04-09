@@ -5,6 +5,7 @@ const ChunkManifestPlugin = require("chunk-manifest-webpack-plugin");
 const WebpackChunkHash = require("webpack-chunk-hash");
 const webpack = require('webpack');
 var path = require('path');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = (env)=> {
     const MODE = env !== undefined ? env : 'dev';
@@ -17,6 +18,14 @@ module.exports = (env)=> {
             library: '[name]'
         },
         devtool: false,
+        module: {
+            rules: [
+                {
+                    test: /\.css$/,
+                    use: ExtractTextPlugin.extract("css-loader")
+                }
+            ]
+        },
         plugins: [
             new UglifyJSPlugin({
                 compress: true,
@@ -30,7 +39,8 @@ module.exports = (env)=> {
             new ChunkManifestPlugin({
                 filename: "chunk-manifest.json",
                 manifestVariable: "webpackManifest"
-            })
+            }),
+            new ExtractTextPlugin("styles.[contenthash].css")
         ]
     });
 };

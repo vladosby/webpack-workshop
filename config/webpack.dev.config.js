@@ -23,7 +23,16 @@ module.exports = (env)=> {
                     target: 'http://roscoebrown.com',
                     changeOrigin: true
                 }
-            ]
+            ],
+            module: {
+                rules: [
+                    {
+                        test: /\.css$/,
+                        exclude: /(node_modules)/,
+                        use: ['style-loader', 'css-loader']
+                    }
+                ]
+            }
         }
     });
 
