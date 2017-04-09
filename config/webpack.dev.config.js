@@ -16,7 +16,14 @@ module.exports = (env)=> {
             watchOptions: {
                 aggregateTimeout: 300,
                 poll: 1000
-            }
+            },
+            proxy: [
+                {
+                    path: '**/*.jpg',
+                    target: 'http://roscoebrown.com',
+                    changeOrigin: true
+                }
+            ]
         }
     });
 
