@@ -27,6 +27,11 @@ module.exports = (env)=> {
                         presets: ['env'],
                         "plugins": ["dynamic-import-webpack"]
                     }
+                },
+                {
+                    test: /\.css$/,
+                    exclude: /(node_modules)/,
+                    use: ['style-loader', 'css-loader']
                 }
             ]
         },

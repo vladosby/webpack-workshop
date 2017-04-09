@@ -2,6 +2,7 @@ import { printIgnoredText } from 'ignored_directory';
 import helloWorld from './welcome';
 import _ from 'lodash';
 import $ from 'jquery';
+import css from './styles.css';
 
 helloWorld('Hello World!');
 
