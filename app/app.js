@@ -4,6 +4,10 @@ import _ from 'lodash';
 import $ from 'jquery';
 import css from './styles.css';
 
+if (mode !== 'prod') {
+    require('../public/index.html');
+}
+
 helloWorld('Hello World!');
 
 console.log('if string: ' + _.isString('123'));
