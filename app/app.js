@@ -25,4 +25,12 @@ setTimeout(() => {
     });
 }, 2000);
 
+if (module.hot) {
+    module.hot.accept('./dynamic-module', () => {
+        document.body.getElementsByClassName('dynamic_message')[0].innerText = '';
+        const dynamicMessage = require('./dynamic-module');
+        dynamicMessage();
+    });
+}
+
 export { helloWorld, printIgnoredText };
