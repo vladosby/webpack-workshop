@@ -7,6 +7,15 @@ module.exports = (env)=> {
 
     return webpackMerge(commonConfig(MODE), {
         devtool: 'source-map',
+        module: {
+            rules: [
+                {
+                    test: /\.css$/,
+                    exclude: /(node_modules)/,
+                    use: ['style-loader', 'css-loader']
+                }
+            ]
+        },
         devServer: {
             publicPath: '/dist/',
             compress: true,
@@ -23,16 +32,7 @@ module.exports = (env)=> {
                     target: 'http://roscoebrown.com',
                     changeOrigin: true
                 }
-            ],
-            module: {
-                rules: [
-                    {
-                        test: /\.css$/,
-                        exclude: /(node_modules)/,
-                        use: ['style-loader', 'css-loader']
-                    }
-                ]
-            }
+            ]
         }
     });
 
