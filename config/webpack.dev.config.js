@@ -1,5 +1,6 @@
 const commonConfig = require('./webpack.common.config');
 const webpackMerge = require('webpack-merge');
+const HttpProxyAgent = require('http-proxy-agent');
 var path = require('path');
 
 module.exports = (env)=> {
@@ -34,7 +35,8 @@ module.exports = (env)=> {
                 {
                     path: '**/*.jpg',
                     target: 'http://roscoebrown.com',
-                    changeOrigin: true
+                    changeOrigin: true,
+                    agent: new HttpProxyAgent('proxy')
                 }
             ]
         }
